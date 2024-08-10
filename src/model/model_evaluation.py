@@ -20,7 +20,7 @@ logger.setLevel('DEBUG')
 console_handler = logging.StreamHandler()
 console_handler.setLevel('DEBUG')
 
-file_handler = logging.FileHandler('model_evaluation_errors.log')
+file_handler = logging.FileHandler('logs/5_model_evaluation_errors.log')
 file_handler.setLevel('ERROR')
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -102,7 +102,7 @@ def save_model_info(run_id: str, model_path: str, file_path: str) -> None:
         raise
 
 def main():
-    mlflow.set_experiment("DVC Pipeline")
+    mlflow.set_experiment("DVC Pipeline Final")
     with mlflow.start_run() as run:  # Start an MLflow run
         try:
             clf = load_model('./models/model.pkl')
@@ -138,7 +138,7 @@ def main():
             mlflow.log_artifact('reports/experiment_info.json')
 
             # Log the evaluation errors log file to MLflow
-            mlflow.log_artifact('reports/model_evaluation_errors.log')
+            mlflow.log_artifact('logs/5_model_evaluation_errors.log')
         except Exception as e:
             logger.error('Failed to complete the model evaluation process: %s', e)
             print(f"Error: {e}")

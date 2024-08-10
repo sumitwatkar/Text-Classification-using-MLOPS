@@ -7,3 +7,6 @@ xgboost
 nltk
 mlflow
 dagshub
+
+dvc[s3]
+awscli
