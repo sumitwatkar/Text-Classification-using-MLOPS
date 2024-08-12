@@ -11,7 +11,7 @@ annotated-types==0.7.0
 antlr4-python3-runtime==4.9.3
 anyio==4.4.0
 appdirs==1.4.4
-asttokens @ file:///home/conda/feedstock_root/build_artifacts/asttokens_1698341106958/work
+#asttokens @ file:///home/conda/feedstock_root/build_artifacts/asttokens_1698341106958/work
 async-timeout==4.0.3
 asyncssh==2.15.0
 atpublic==5.0
