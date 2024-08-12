@@ -9,6 +9,7 @@ import logging
 import mlflow
 import mlflow.sklearn
 import dagshub
+import os
 
 mlflow.set_tracking_uri("https://dagshub.com/sumitwatkar/Text-Classification-using-MLOPS.mlflow")
 dagshub.init(repo_owner='sumitwatkar', repo_name='Text-Classification-using-MLOPS', mlflow=True)
@@ -20,8 +21,14 @@ logger.setLevel('DEBUG')
 console_handler = logging.StreamHandler()
 console_handler.setLevel('DEBUG')
 
-file_handler = logging.FileHandler('logs/5_model_evaluation_errors.log')
-file_handler.setLevel('ERROR')
+# Ensure the logs directory exists
+log_dir = 'logs'
+if not os.path.exists(log_dir):
+    os.makedirs(log_dir)
+
+# Set up logging
+file_handler = logging.FileHandler(os.path.join(log_dir, '5_model_evaluation_errors.log'))
+logging.basicConfig(level=logging.INFO, handlers=[file_handler])
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 console_handler.setFormatter(formatter)

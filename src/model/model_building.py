@@ -6,6 +6,7 @@ import pickle
 from sklearn.linear_model import LogisticRegression
 import yaml
 import logging
+import os
 
 # logging configuration
 logger = logging.getLogger('model_building')
@@ -14,8 +15,14 @@ logger.setLevel('DEBUG')
 console_handler = logging.StreamHandler()
 console_handler.setLevel('DEBUG')
 
-file_handler = logging.FileHandler('logs/4_model_building_errors.log')
-file_handler.setLevel('ERROR')
+# Ensure the logs directory exists
+log_dir = 'logs'
+if not os.path.exists(log_dir):
+    os.makedirs(log_dir)
+
+# Set up logging
+file_handler = logging.FileHandler(os.path.join(log_dir, '4_model_building_errors.log'))
+logging.basicConfig(level=logging.INFO, handlers=[file_handler])
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 console_handler.setFormatter(formatter)
